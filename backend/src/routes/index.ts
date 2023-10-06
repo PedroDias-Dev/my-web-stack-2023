@@ -1,8 +1,6 @@
 // @filename: routers/_app.ts
-import { router, publicProcedure, mergeRouters } from "../trpc";
-import { z } from "zod";
-
-import userRouter from "./usersRouter";
+import { mergeRouters } from '../trpc';
+import userRouter from './usersRouter';
 
 const appRouter = mergeRouters(userRouter);
 

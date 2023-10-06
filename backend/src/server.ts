@@ -1,10 +1,10 @@
-import { createHTTPServer } from "@trpc/server/adapters/standalone";
-import appRouter from "./routes";
+import 'module-alias/register';
 
-import "./lib/moduleAlias";
+import appRouter from '@routes/usersRouter';
+import { createHTTPServer } from '@trpc/server/adapters/standalone';
 
 const server = createHTTPServer({
-  router: appRouter,
+  router: appRouter
 });
 
 server.listen(3000);

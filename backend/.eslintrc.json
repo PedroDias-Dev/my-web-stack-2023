@@ -1,14 +1,15 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier"],
-  "extends": ["prettier/@typescript-eslint", "plugin:prettier/recommended"],
   "parserOptions": {
-    "ecmaVersion": 10,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "modules": true
-    }
+    "ecmaVersion": 12,
+    "sourceType": "module"
   },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "env": {
     "node": true
   },
@@ -40,15 +41,8 @@
     "quotes": ["error", "single"],
     "quote-props": ["error", "as-needed"],
     "object-shorthand": ["error"],
-    "camelcase": [
-      "error",
-      {
-        "properties": "always"
-      }
-    ],
     "@typescript-eslint/no-unused-vars": ["warn"],
     "@typescript-eslint/adjacent-overload-signatures": ["error"],
-    "@typescript-eslint/interface-name-prefix": ["error", "always"],
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
       {
@@ -65,5 +59,17 @@
     "@typescript-eslint/member-ordering": ["error"],
     "@typescript-eslint/no-namespace": ["error"],
     "@typescript-eslint/no-require-imports": ["error"]
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": [
+        ["@config", "./src/config"],
+        ["@controllers", "./src/controllers"],
+        ["@models", "./src/models"],
+        ["@routes", "./src/routes"],
+        ["@services", "./src/services"],
+        ["@utils", "./src/utils"]
+      ]
+    }
   }
 }
