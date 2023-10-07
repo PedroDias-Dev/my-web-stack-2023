@@ -13,7 +13,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "18"
-      - run: cd backend/
-      - run: npm install -g pnpm
-      - run: pnpm install
-      - run: pnpm migrate
+      - name: Install pnpm
+        working-directory: ./backend
+        run: npm install -g pnpm
+      - name: Install dependencies
+        working-directory: ./backend
+        run: pnpm install
+      - name: Run Migrations
+        working-directory: ./backend
+        run: pnpm migrate
