@@ -1,11 +1,14 @@
-import { publicProcedure, router } from "../trpc";
+import { db } from '@config/db';
+import { users } from '@models/user';
+
+import { publicProcedure, router } from '../trpc';
 
 const userRouter = router({
   userList: publicProcedure.query(async () => {
-    const users = [] as any[];
+    const result = await db.select().from(users);
 
-    return users;
-  }),
+    return result;
+  })
 });
 
 export default userRouter;
