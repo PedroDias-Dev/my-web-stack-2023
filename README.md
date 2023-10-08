@@ -7,7 +7,6 @@ Currently using:
 - [ ] [Node.js](https://nodejs.org/en/)
 - [ ] [TRPC](https://trpc.io/)
 - [ ] [Fastify](https://fastify.dev/)
-- [ ] [SuperTokens](https://supertokens.com/)
 - [ ] [Drizzle](https://orm.drizzle.team/)
 - [ ] [PostgreSQL](https://www.postgresql.org/)
 
