@@ -1,7 +1,10 @@
 // @filename: routers/_app.ts
-import { mergeRouters } from '../trpc';
+import { router } from 'trpc';
+
 import userRouter from './usersRouter';
 
-const appRouter = mergeRouters(userRouter);
+const appRouter = router({
+  user: userRouter
+});
 
 export default appRouter;

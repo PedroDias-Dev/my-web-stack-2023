@@ -27,9 +27,10 @@
       "@models/*": ["./models/*"],
       "@services/*": ["./services/*"],
       "@utils/*": ["./utils/*"],
-      "@config/*": ["./config/*"]
+      "@config/*": ["./config/*"],
+      "@middlewares/*": ["./middlewares/*"],
     }
   },
-  "include": ["./src/**/*.ts"],
+  "include": ["./src/**/*.ts", "src/config/drizzle.config.ts"],
   "exclude": ["node_modules", "dist"]
 }
