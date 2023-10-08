@@ -1,0 +1,1 @@
+ALTER TABLE "requestLogs" ADD COLUMN "url" varchar(256);

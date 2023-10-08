@@ -29,6 +29,27 @@
       "when": 1696722448990,
       "tag": "0003_parallel_bloodaxe",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1696794134165,
+      "tag": "0004_illegal_major_mapleleaf",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1696794225900,
+      "tag": "0005_lowly_rictor",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1696794674359,
+      "tag": "0006_military_blob",
+      "breakpoints": true
     }
   ]
 }

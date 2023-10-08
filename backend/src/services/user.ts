@@ -18,7 +18,14 @@ interface UserRes {
 
 export class UserService {
   public async usersList() {
-    const result = await db.select().from(users);
+    const result = await db
+      .select({
+        id: users.id,
+        fullName: users.fullName,
+        email: users.email,
+        phone: users.phone
+      })
+      .from(users);
 
     return result;
   }

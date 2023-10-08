@@ -19,7 +19,7 @@ export const errorFormatter = (opts: {
     message = JSON.parse(error.message)[0].message;
   }
 
-  log(error);
+  log('ERROR', error);
 
   delete shape.data.stack;
 

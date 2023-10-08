@@ -2,7 +2,9 @@ import { errorFormatter } from '@middlewares/error';
 import { initTRPC, TRPCError } from '@trpc/server';
 import Session from 'supertokens-node/recipe/session';
 
-export const t = initTRPC.create({
+import { IContext } from './context';
+
+export const t = initTRPC.context<IContext>().create({
   errorFormatter
 });
 
