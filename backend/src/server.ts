@@ -3,7 +3,6 @@ import 'module-alias/register';
 
 import cors from '@fastify/cors';
 import formDataPlugin from '@fastify/formbody';
-import { logOnResponse } from '@middlewares/requestLogs';
 import appRouter from '@routes/usersRouter';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import { log } from '@utils/logger';
@@ -36,9 +35,10 @@ configDotenv();
     await server.register(formDataPlugin);
     await server.register(plugin);
 
-    server.addHook('onResponse', (req, reply, done) => {
-      logOnResponse(req, reply, done);
-    });
+    // NOT LOGGING 404s AND OTHER STUFF
+    // server.addHook('onResponse', (req, reply, done) => {
+    //   logOnResponse(req, reply, done);
+    // });
 
     await server.register(fastifyTRPCPlugin, {
       prefix: '/trpc',
