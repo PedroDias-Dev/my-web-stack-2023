@@ -1,17 +1,15 @@
-import './auth/supertokens';
 import 'module-alias/register';
 
-import cors from '@fastify/cors';
 import formDataPlugin from '@fastify/formbody';
 import appRouter from '@routes/usersRouter';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import { log } from '@utils/logger';
 import { configDotenv } from 'dotenv';
 import fastify from 'fastify';
-import supertokens from 'supertokens-node';
-import { errorHandler, plugin } from 'supertokens-node/framework/fastify';
 
 import { createContext } from './context';
+import { clerkPlugin } from '@clerk/fastify';
+import { logOnRequest } from '@middlewares/requestLogs';
 
 configDotenv();
 
@@ -26,26 +24,19 @@ configDotenv();
       disableRequestLogging: true
     });
 
-    await server.register(cors, {
-      origin: 'http://localhost:5173',
-      allowedHeaders: ['Content-Type', ...supertokens.getAllCORSHeaders()],
-      credentials: true
-    });
+    server.register(clerkPlugin);
 
     await server.register(formDataPlugin);
-    await server.register(plugin);
 
-    // NOT LOGGING 404s AND OTHER STUFF
-    // server.addHook('onResponse', (req, reply, done) => {
-    //   logOnResponse(req, reply, done);
-    // });
+    server.addHook('onResponse', (req, reply, done) => {
+      logOnRequest(req, reply);
+      done();
+    });
 
     await server.register(fastifyTRPCPlugin, {
       prefix: '/trpc',
       trpcOptions: { router: appRouter, createContext }
     });
-
-    server.setErrorHandler(errorHandler());
 
     await server.listen({ port: parseInt(process.env.PORT as string) || 3000 });
     log(`Server listening on port ${process.env.PORT || 3000}`);
