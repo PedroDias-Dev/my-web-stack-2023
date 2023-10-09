@@ -23,8 +23,7 @@ const userRouter = router({
         message: 'Welcome!',
         data
       };
-    }),
-    // logout: 
+    })
 });
 
 export default userRouter;

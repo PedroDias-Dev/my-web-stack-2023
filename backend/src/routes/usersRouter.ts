@@ -1,12 +1,12 @@
 import { UserService } from '@services/user';
 import { z } from 'zod';
 
-import { publicProcedure, router } from '../trpc';
+import { authenticatedProcedure, publicProcedure, router } from '../trpc';
 
 const userService = new UserService();
 
 const userRouter = router({
-  usersList: publicProcedure.query(async () => {
+  usersList: authenticatedProcedure.query(async () => {
     const result = await userService.usersList();
     return result;
   }),
