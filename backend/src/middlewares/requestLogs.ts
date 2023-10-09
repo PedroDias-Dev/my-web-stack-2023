@@ -1,4 +1,3 @@
-import { getAuth } from '@clerk/fastify';
 import { db } from '@config/db';
 import { requestLogs } from '@models/requestLog';
 import { log } from '@utils/logger';
@@ -13,13 +12,22 @@ export const logOnRequest = async (req: FastifyRequest, reply: FastifyReply) => 
     });
   }
 
-  const reqBody: any = req.body ? JSON.parse(req.body as string) : null;
+  let reqBody: any = null;
+
+  if (req.body) {
+    try {
+      reqBody = JSON.parse(req.body as string);
+    } catch (e) {
+      log('ERROR', 'Cannot parse request body for request ' + req.raw.url);
+      reqBody = req.body;
+    }
+  }
 
   if (reqBody && reqBody.password) {
     reqBody.password = '********';
   }
 
-  const { userId } = getAuth(req);
+  const userId = null;
 
   if (req) {
     await db.insert(requestLogs).values({
